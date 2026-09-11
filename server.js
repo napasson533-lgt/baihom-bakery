@@ -64,8 +64,8 @@ app.patch("/api/orders/:id",async(req,res)=>{
 
 io.on("connection",s=>s.on("admin-join",()=>s.join("admins")));
 
-app.get("/admin",(req,res)=>res.sendFile(__dirname+"/public/index.html"));
-app.get("*",(req,res)=>res.sendFile(__dirname+"/public/index.html"));
+app.get("/admin",(req,res)=>res.sendFile(__dirname+"/index.html"));
+app.get("*",(req,res)=>res.sendFile(__dirname+"/index.html"));
 
 initDb().then(()=>server.listen(PORT,()=>console.log("BaiHom Bakery on "+PORT))).catch(e=>{console.error(e);process.exit(1)});
 
