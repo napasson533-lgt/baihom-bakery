@@ -1,0 +1,26 @@
+<!doctype html><html lang="th"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e91e63"><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/style.css">
+<title>BaiHom Bakery</title></head><body>
+<header class="topbar"><div class="brand"><span>🍰</span><div><b>BaiHom</b> Bakery<small>อบด้วยใจ หอมทุกคำ สั่งล่วงหน้าได้</small></div></div>
+<nav><a href="#home">⌂ หน้าหลัก</a><a href="#products">🍰 สินค้า</a><a href="#custom">🎂 สั่งเค้กวันเกิด</a><a href="#cart">🛒 ตะกร้า <i id="cartCount">0</i></a><a href="/admin">🔐 แอดมิน</a></nav></header>
+<main id="customerView"><section class="layout"><aside class="products"><h2>🍰 เลือกสินค้า</h2><div id="productGrid" class="product-grid"></div></aside>
+<section class="order-panel" id="custom"><h2>🎂 สั่งเค้กวันเกิด</h2><div class="form-grid">
+<label>ขนาดเค้ก<select id="size"><option value="399">1 ปอนด์ (399 บาท)</option><option value="599" selected>2 ปอนด์ (599 บาท)</option><option value="799">3 ปอนด์ (799 บาท)</option></select></label>
+<label>รสชาติ<select id="flavor"><option>ช็อกโกแลต</option><option>วานิลลา</option><option>สตรอว์เบอร์รี</option><option>ชาเขียว</option></select></label>
+<label>สีเค้ก<select id="cakeColor"><option>สีขาว</option><option>สีชมพู</option><option>สีฟ้า</option><option>สีม่วง</option></select></label>
+<label>ข้อความบนเค้ก<input id="message" value="Happy Birthday!" maxlength="40"></label>
+<label>วันรับสินค้า<input id="pickupDate" type="date"></label><label>รายละเอียด<textarea id="note"></textarea></label></div>
+<button class="pink-btn" onclick="addCustomCake()">เพิ่มเค้กลงตะกร้า 🛒</button>
+<div class="preview-wrap"><div><h3>ตัวอย่างเค้ก</h3><div class="cake-preview"><div>Happy<br>Birthday!</div><span>♥ ♥ ♥</span></div></div>
+<div><h3>สรุปการสั่งเค้ก</h3><p>ขนาด: <b id="sumSize">2 ปอนด์</b></p><p>รสชาติ: <b id="sumFlavor">ช็อกโกแลต</b></p><p>ข้อความ: <b id="sumMessage">Happy Birthday!</b></p><p class="price"><b id="sumPrice">599</b> บาท</p></div></div></section>
+<aside class="cart" id="cart"><h2>🛒 ตะกร้า <i id="cartBadge">0</i></h2><div id="cartItems"><p class="muted">ยังไม่มีสินค้า</p></div><div class="total"><b>รวมทั้งหมด</b><b id="cartTotal">0 บาท</b></div><button class="pink-btn" onclick="openCheckout()">สั่งซื้อสินค้า</button></aside></section></main>
+
+<main id="adminView" class="admin hidden"><div id="loginBox" class="login"><h1>🔐 ระบบแอดมิน</h1><p>เข้าสู่ระบบเพื่อดูออเดอร์ลูกค้า</p><input id="adminPassword" type="password" placeholder="รหัสผ่านแอดมิน"><button class="pink-btn" onclick="adminLogin()">เข้าสู่ระบบ</button></div>
+<div id="dashboard" class="hidden"><div class="admin-head"><div><h1>🔔 BaiHom Bakery</h1><p>ออเดอร์จะเข้ามาแจ้งเตือนแบบ Real-time</p></div><button class="outline-btn" onclick="adminLogout()">ออกจากระบบ</button></div>
+<div class="stats"><div><b id="statAll">0</b><span>ทั้งหมด</span></div><div><b id="statPending">0</b><span>รอรับ</span></div><div><b id="statDoing">0</b><span>กำลังเตรียม</span></div><div><b id="statDone">0</b><span>พร้อมรับ/จัดส่ง</span></div></div><div id="adminOrders"></div></div></main>
+
+<div id="checkoutModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeCheckout()">×</button><h2>ยืนยันการสั่งซื้อ</h2>
+<label>ชื่อผู้สั่ง<input id="customerName"></label><label>เบอร์โทร<input id="phone"></label><label>ที่อยู่/จุดรับสินค้า<textarea id="address"></textarea></label><label>หมายเหตุ<textarea id="checkoutNote"></textarea></label>
+<button class="pink-btn" onclick="placeOrder()">ยืนยันสั่งซื้อ</button></div></div><div id="toast"></div>
+<script src="/socket.io/socket.io.js"></script><script src="/app.js"></script></body></html>
