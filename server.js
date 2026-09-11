@@ -15,7 +15,7 @@ const pool=new Pool({
 });
 
 app.use(express.json({limit:"1mb"})); app.use(cookieParser());
-app.use(express.static("public"));
+app.use(express.static(__dirname));
 
 async function initDb(){
  if(!process.env.DATABASE_URL) return;
